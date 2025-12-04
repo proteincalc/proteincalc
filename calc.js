@@ -1,25 +1,25 @@
 // Food data (per 100g)
         const foodData = [
-            { name: "Chicken breast (cooked)", protein: 31, calories: 165 },
-            { name: "Eggs (whole)", protein: 13, calories: 155 },
-            { name: "Fish (salmon)", protein: 20, calories: 208 },
-            { name: "Paneer", protein: 18, calories: 265 },
-            { name: "Tofu", protein: 8, calories: 76 },
-            { name: "Greek yogurt (curd substitute)", protein: 10, calories: 59 },
-            { name: "Milk (cow)", protein: 3.4, calories: 61 },
-            { name: "Soy chunks (Nutrela)", protein: 52, calories: 345 },
-            { name: "Soybeans (boiled)", protein: 16, calories: 173 },
-            { name: "Lentils (dal, boiled)", protein: 9, calories: 116 },
-            { name: "Chickpeas (boiled)", protein: 9, calories: 164 },
-            { name: "Kidney beans (rajma boiled)", protein: 8.7, calories: 127 },
-            { name: "Black beans (boiled)", protein: 8.9, calories: 132 },
-            { name: "Peanuts", protein: 25.8, calories: 567 },
-            { name: "Almonds", protein: 21, calories: 579 },
-            { name: "Pumpkin seeds", protein: 30, calories: 559 },
-            { name: "Oats", protein: 17, calories: 389 },
-            { name: "Quinoa (cooked)", protein: 4.4, calories: 120 },
-            { name: "Whey protein powder", protein: 24, calories: 120 },
-            { name: "Cottage cheese (low-fat)", protein: 11.1, calories: 98 }
+            { name: "Chicken breast (cooked)", protein: 31, calories: 165, source: "meat" },
+            { name: "Eggs (whole)", protein: 13, calories: 155, source: "meat" },
+            { name: "Fish (salmon)", protein: 20, calories: 208, source: "meat" },
+            { name: "Paneer", protein: 18, calories: 265, source: "dairy" },
+            { name: "Tofu", protein: 8, calories: 76, source: "legumes" },
+            { name: "Greek yogurt (curd substitute)", protein: 10, calories: 59, source: "dairy" },
+            { name: "Milk (cow)", protein: 3.4, calories: 61, source: "dairy" },
+            { name: "Soy chunks (Nutrela)", protein: 52, calories: 345, source: "legumes" },
+            { name: "Soybeans (boiled)", protein: 16, calories: 173, source: "legumes" },
+            { name: "Lentils (dal, boiled)", protein: 9, calories: 116, source: "legumes" },
+            { name: "Chickpeas (boiled)", protein: 9, calories: 164, source: "legumes" },
+            { name: "Kidney beans (rajma boiled)", protein: 8.7, calories: 127, source: "legumes" },
+            { name: "Black beans (boiled)", protein: 8.9, calories: 132, source: "legumes" },
+            { name: "Peanuts", protein: 25.8, calories: 567, source: "nuts" },
+            { name: "Almonds", protein: 21, calories: 579, source: "nuts" },
+            { name: "Pumpkin seeds", protein: 30, calories: 559, source: "nuts" },
+            { name: "Oats", protein: 17, calories: 389, source: "nuts" },
+            { name: "Quinoa (cooked)", protein: 4.4, calories: 120, source: "legumes" },
+            { name: "Whey protein powder", protein: 24, calories: 120, source: "dairy" },
+            { name: "Cottage cheese (low-fat)", protein: 11.1, calories: 98, source: "dairy" }
         ];
 
         // Array to store added items
@@ -209,6 +209,30 @@
 
         // Event listener for target protein input
         document.getElementById('targetProtein').addEventListener('input', updateStats);
+
+        // Filter foods based on search and source
+        function filterFoods() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const sourceCheckboxes = document.querySelectorAll('.source-option input[type="checkbox"]');
+            const selectedSources = Array.from(sourceCheckboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+            
+            const foodItems = document.querySelectorAll('.food-item');
+            
+            foodData.forEach((food, index) => {
+                const matches = (
+                    (selectedSources.includes('all') || selectedSources.includes(food.source)) &&
+                    (food.name.toLowerCase().includes(searchTerm) || searchTerm === '')
+                );
+                
+                if (matches) {
+                    foodItems[index].style.display = 'flex';
+                } else {
+                    foodItems[index].style.display = 'none';
+                }
+            });
+        }
 
         // Initialize
         generateFoodGrid();
