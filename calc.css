@@ -1,4 +1,14 @@
-
+:root {
+  --primary-color: #667eea;   /* Blue-ish purple */
+  --secondary-color: #764ba2; /* Deep purple */
+  --bg-color: #0f1419;        /* Dark background */
+  --card-bg: #191f2b;         /* Slightly lighter for boxes */
+  --text-white: #ffffff;
+  --text-gray: #a0a0a0;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --accent-color: #f093fb;    /* Pink accent */
+}
+        
         * {
             margin: 0;
             padding: 0;
@@ -9,10 +19,13 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #2d1b3d 100%);
             min-height: 100vh;
-            padding: 20px;
+            /* top padding increased to make room for fixed navbar */
+            padding: 90px 20px 20px 20px;
             position: relative;
             overflow-x: hidden;
         }
+
+        /* Navbar uses canonical styles from index.css to keep pages consistent */
 
         /* Animated Background */
         body::before {
@@ -791,4 +804,68 @@
                 font-size: 24px;
             }
         }
-    
+.navbar {
+  background-color: rgba(15, 20, 25, 0.95);
+  padding: 20px 5% 20px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: -3px;
+  width: 100vw;
+  z-index: 10;
+  margin-left: -20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo span {
+  color: var(--primary-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: var(--text-gray);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+}
+/* Mobile Menu Button (Hidden on Desktop) */
+.menu-btn {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}

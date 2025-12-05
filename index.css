@@ -1,0 +1,390 @@
+/* 
+  Simple CSS for ProteinPro 
+  Easy to understand for beginners
+*/
+
+/* 1. Variables - We store colors here to change them easily */
+:root {
+  --primary-color: #667eea;   /* Blue-ish purple */
+  --secondary-color: #764ba2; /* Deep purple */
+  --bg-color: #0f1419;        /* Dark background */
+  --card-bg: #191f2b;         /* Slightly lighter for boxes */
+  --text-white: #ffffff;
+  --text-gray: #a0a0a0;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --accent-color: #f093fb;    /* Pink accent */
+}
+
+/* 2. Basic Reset - Remove default margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-white);
+  line-height: 1.6;
+}
+
+/* 3. Navigation Bar */
+.navbar {
+  background-color: rgba(15, 20, 25, 0.95);
+  padding: 15px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 10;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo span {
+  color: var(--primary-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: var(--text-gray);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Mobile Menu Button (Hidden on Desktop) */
+.menu-btn {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* 4. Hero Section (Slideshow) */
+.hero {
+  height: 600px;
+  position: relative;
+  margin-top: 60px; /* Space for fixed navbar */
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4); /* Darken image slightly */
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 80%;
+  z-index: 10;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+  font-size: 20px;
+  color: #ddd;
+  margin-bottom: 30px;
+}
+
+/* 5. General Section Styles */
+section {
+  padding: 80px 10%;
+}
+
+.section-title {
+  font-size: 36px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-gray);
+  margin-bottom: 50px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 6. About Section */
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  align-items: center;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-text h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.about-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.stat-item h3 {
+  font-size: 32px;
+  color: var(--primary-color);
+}
+
+.features-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  min-width: 300px;
+}
+
+.feature-card {
+  background-color: var(--card-bg);
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+}
+
+/* 7. Services Section */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.service-card {
+  background-color: var(--card-bg);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary-color);
+}
+
+.service-icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.service-card h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.service-card p {
+  color: var(--text-gray);
+  margin-bottom: 25px;
+}
+
+.service-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* 9. Contact Section */
+.contact-container {
+  background-color: var(--card-bg);
+  border-radius: 30px;
+  padding: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.contact-container {
+  background-color: var(--card-bg);
+  border-radius: 30px;
+  padding: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.icon-circle {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+}
+
+.contact-form {
+  flex: 1;
+  min-width: 300px;
+}
+
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 15px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: white;
+  font-size: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.contact-form input::placeholder, .contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contact-form button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
+}
+
+.contact-form button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* 10. Footer */
+footer {
+  background-color: #0a0d12;
+  padding: 30px;
+  text-align: center;
+  color: var(--text-gray);
+  margin-top: 50px;
+  border-top: 1px solid var(--border-color);
+}
+
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .menu-btn {
+    display: block;
+  }
+  
+  .hero h1 {
+    font-size: 32px;
+  }
+  
+  .calc-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-container {
+    padding: 30px;
+  }
+}
